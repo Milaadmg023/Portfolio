@@ -1,3 +1,8 @@
-import sqlite from "node:sqlite"
+import { PrismaClient } from '@prisma/client';
+const prisma = new PrismaClient();
 
-export default sqlite.open("./mydb.sqlite", { timeout: 3000 })
+export default async function getBase() {
+    const baseInfo = await prisma.base.findMany();
+    console.log(baseInfo);
+    return baseInfo
+} 
