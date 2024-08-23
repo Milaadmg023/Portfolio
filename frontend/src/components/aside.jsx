@@ -1,4 +1,13 @@
+import { useEffect, useState } from "react";
+import fetchData from "../../utils/api";
 export default function Aside() {
+  const [data, setData] = useState([]);
+  useEffect(() => {
+    fetchData("https://localhost:8080/api").then((data) =>
+      setData(data)
+    );
+    console.log(data);
+  }, []);
   return (
     <aside className="sidebar" data-sidebar="">
       <div className="sidebar-info">
