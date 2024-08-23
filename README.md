@@ -3,7 +3,6 @@
 
 ## Technologies Used
 
-----
 
 - Express Js
 
