@@ -1,9 +1,8 @@
 export default function Hero({ baseData }) {
-  console.log(baseData);
   return (
     <section id="hero" className="w-full py-12 md:py-24 lg:py-32">
       <div className="container px-4 md:px-6">
-        <div className="grid grid-cols-1 lg:grid-cols-2 justify-center">
+        <div className="grid grid-cols-1 gap-2 lg:grid-cols-2 justify-center">
           <div className="flex flex-col justify-center">
             <div className="space-y-2 w-fit mx-auto">
               <p className="max-w-[600px] text-muted-foreground md:text-xl">
@@ -20,7 +19,7 @@ export default function Hero({ baseData }) {
           <img
             src={`http://localhost:8080/${baseData.profile}`}
             alt="Hero"
-            className="mx-auto aspect-video overflow-hidden rounded-full object-cover sm:w-full lg:order-last lg:aspect-square"
+            className="mx-auto rounded-full"
           />
         </div>
       </div>
