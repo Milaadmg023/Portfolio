@@ -1,25 +1,26 @@
-export default function Hero() {
+export default function Hero({ baseData }) {
+  console.log(baseData);
   return (
     <section id="hero" className="w-full py-12 md:py-24 lg:py-32">
       <div className="container px-4 md:px-6">
-        <div className="grid gap-6 lg:grid-cols-[1fr_400px] lg:gap-12 xl:grid-cols-[1fr_600px]">
-          <div className="flex flex-col justify-center space-y-4">
-            <div className="space-y-2">
-              <h1 className="text-3xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none">
-                John Doe
+        <div className="grid grid-cols-1 lg:grid-cols-2 justify-center">
+          <div className="flex flex-col justify-center">
+            <div className="space-y-2 w-fit mx-auto">
+              <p className="max-w-[600px] text-muted-foreground md:text-xl">
+                سلام, من
+              </p>
+              <h1 className="my-2 text-xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none">
+                {baseData.name}
               </h1>
               <p className="max-w-[600px] text-muted-foreground md:text-xl">
-                Passionate full-stack developer with expertise in building
-                modern web applications.
+                {baseData.job} هستم.
               </p>
             </div>
           </div>
           <img
-            src="/placeholder.svg"
-            width={550}
-            height={550}
+            src={`http://localhost:8080/${baseData.profile}`}
             alt="Hero"
-            className="mx-auto aspect-video overflow-hidden rounded-xl object-cover sm:w-full lg:order-last lg:aspect-square"
+            className="mx-auto aspect-video overflow-hidden rounded-full object-cover sm:w-full lg:order-last lg:aspect-square"
           />
         </div>
       </div>
