@@ -3,6 +3,5 @@ const prisma = new PrismaClient();
 
 export default async function getBase() {
     const baseInfo = await prisma.base.findMany();
-    console.log(baseInfo);
     return baseInfo
 } 
