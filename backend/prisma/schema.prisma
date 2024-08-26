@@ -19,3 +19,11 @@ model Base {
   job     String
   profile String
 }
+
+model Projecs {
+  id      String @id
+  name    String
+  picture String
+  link    String
+  desc    String
+}
