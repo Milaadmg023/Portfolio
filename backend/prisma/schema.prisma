@@ -14,16 +14,42 @@ datasource db {
 }
 
 model Base {
-  id      String @id
-  name    String
-  job     String
-  profile String
+  id       String    @id
+  name     String
+  job      String
+  profile  String
+  about    String
+  projects Project[]
+  skills   Skill[]
+  messages Message[]
+  email    String
+  phone    String
 }
 
-model Projecs {
-  id      String @id
+model Project {
+  id           String  @id
+  name         String
+  link         String
+  image        String
+  description  String
+  technologies String
+  Base         Base?   @relation(fields: [baseId], references: [id])
+  baseId       String?
+}
+
+model Skill {
+  id     String  @id
+  name   String
+  level  String
+  Base   Base?   @relation(fields: [baseId], references: [id])
+  baseId String?
+}
+
+model Message {
+  id      String  @id
   name    String
-  picture String
-  link    String
-  desc    String
+  email   String
+  message String
+  Base    Base?   @relation(fields: [baseId], references: [id])
+  baseId  String?
 }
