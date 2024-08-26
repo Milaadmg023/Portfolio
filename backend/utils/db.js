@@ -3,11 +3,12 @@ const prisma = new PrismaClient();
 
 export default class Get {
     async getBase() {
-        const baseInfo = await prisma.base.findMany();
+        const baseInfo = await prisma.base.findMany({
+            include: {
+                projects:true,
+                skills:true,
+            }
+        })
         return baseInfo
-    }
-    async getProjects() {
-        const projects = await prisma.projecs.findMany();
-        return projects
     }
 }
