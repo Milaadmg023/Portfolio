@@ -157,7 +157,7 @@ export default function Navbar({ getTheme }) {
         <div className="flex flex-col bg-gray-100 dark:bg-slate-800 rounded-lg shadow-2xl">
           <div className="border border-gray-300 py-1 flex gap-1 shadow-xl rounded-lg dark:bg-slate-800 dark:text-slate-100 dark:border-slate-600">
             {mobile_nav_items.map((item, index) => (
-              <div className="group relative px-1 cursor-pointer">
+              <div key={index} className="group relative px-1 cursor-pointer">
                 <div className="flex h-10 w-10 items-center justify-center rounded-full hover:text-blue-500">
                   <a href={item.href}>{item.icon}</a>
                 </div>
