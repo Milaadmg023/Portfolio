@@ -1,9 +1,12 @@
 import React from "react";
-
+import { useState } from "react"; 
+import Post from '../../utils/api.js';
 function Contact() {
+  const [message, setMessage] = useState({});
   function message_handler(e){
-    e.preventDefault()
-    console.log(e.form);
+    e.preventDefault();
+    setMessage(({...message, [e.target.id]: e.target.value}));
+
   }
   return (
     <section id="contact" className="w-full py-12 md:py-24 lg:py-32 bg-muted">
@@ -20,7 +23,7 @@ function Contact() {
           </div>
         </div>
         <div className="mx-auto max-w-md space-y-4 py-12">
-          <form className="grid gap-4">
+          <form className="grid gap-4" onChange={message_handler}>
             <div className="grid gap-1">
               <label
                 className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
@@ -61,7 +64,9 @@ function Contact() {
             </div>
             <button
               className="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2 justify-self-end"
-              onClick={message_handler}
+              onClick={(e)=>{
+                e.preventDefault()
+              }}
             >
               ارسال پیام
             </button>
