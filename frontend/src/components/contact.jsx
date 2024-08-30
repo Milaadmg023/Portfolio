@@ -1,12 +1,18 @@
 import React from "react";
-import { useState } from "react"; 
-import Post from '../../utils/api.js';
+import { useState } from "react";
+import { Post } from "../../utils/api.js";
 function Contact() {
   const [message, setMessage] = useState({});
-  function message_handler(e){
+  function message_handler(e) {
     e.preventDefault();
-    setMessage(({...message, [e.target.id]: e.target.value}));
-
+    setMessage({ ...message, [e.target.id]: e.target.value });
+  }
+  function submit_handler(e) {
+    e.preventDefault();
+    Post("/api/messages/", message).then((res) => {
+      console.log(res);
+      setMessage({});
+    });
   }
   return (
     <section id="contact" className="w-full py-12 md:py-24 lg:py-32 bg-muted">
@@ -64,13 +70,11 @@ function Contact() {
             </div>
             <button
               className="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2 justify-self-end"
-              onClick={(e)=>{
-                e.preventDefault()
-              }}
+              onClick={submit_handler}
             >
               ارسال پیام
             </button>
-          </form >
+          </form>
         </div>
       </div>
     </section>

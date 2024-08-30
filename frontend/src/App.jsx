@@ -5,7 +5,7 @@ import Navbar from "./components/navabr";
 import Projects from "./components/projects";
 import Skills from "./components/skills";
 import { useEffect, useState } from "react";
-import Get from "../utils/api.js";
+import {Get} from "../utils/api.js";
 export default function App() {
   const [baseData, setBaseData] = useState(null);
   const [theme, setTheme] = useState("light");

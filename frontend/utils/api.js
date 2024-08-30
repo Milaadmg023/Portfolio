@@ -1,11 +1,11 @@
-export default async function Get(url){
+export async function Get(url){
     const baseUrl = "http://localhost:8080"
     const response = await fetch(`${baseUrl}${url}`);
     const data = await response.json(); 
     return data[0]
 }
 
-export default async function Post(url, data){
+export async function Post(url, data){
     const baseUrl = "http://localhost:8080"
     const response = await fetch(`${baseUrl}${url}`, {
         method: "POST",
@@ -14,6 +14,6 @@ export default async function Post(url, data){
         },
         body: JSON.stringify(data)
     });
-    const data = await response.json(); 
-    return data
+    const res = await response.json(); 
+    return res
 }
