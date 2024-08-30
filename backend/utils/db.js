@@ -18,11 +18,11 @@ export class Post {
     const msg_id = await prisma.message.count();
     const new_message = await prisma.message.create({
       data: {
-        id: msg_id + 1,
+        id: String(msg_id + 1),
         name: msg.name,
         email: msg.email,
         message: msg.message,
-        baseId: 1,
+        baseId: "1",
       },
     });
     return new_message;
