@@ -1,6 +1,7 @@
 export default async function Send_message(url, data) {
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL || '';
   try {
-    const res = await fetch(url, {
+    const res = await fetch(`${apiUrl}${url}`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
