@@ -10,7 +10,7 @@ function Contact() {
   function submit_handler(e) {
     e.preventDefault();
     console.log(message);
-    Send_message("/messages", message).then(
+    Send_message("/api/messages", message).then(
       (res) => {
         console.log(res);
       }

@@ -1,7 +1,6 @@
 export default async function fetcher(url) {
-  const public_url = process.env.PUBLIC_URL;
   try {
-    const res = await fetch(public_url + url);
+    const res = await fetch(url);
     return res.json();
   } catch (error) {
     console.log(error);
