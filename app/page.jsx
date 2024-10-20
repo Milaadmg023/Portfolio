@@ -3,7 +3,7 @@ import fetcher from "@/utils/fetch";
 
 
 export default async function Home() {
-  const res = await fetcher("http://localhost:3000/api/");
+  const res = await fetcher("/");
   return (
     <Container data={res}/>
   );
