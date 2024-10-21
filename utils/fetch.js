@@ -1,5 +1,6 @@
 export default async function fetcher(url) {
   const apiUrl = process.env.NEXT_PUBLIC_API_URL || '';
+  const fullUrl = new URL(url, apiUrl);
   try {
     const res = await fetch(`${apiUrl}${url}`);
     return res.json();
