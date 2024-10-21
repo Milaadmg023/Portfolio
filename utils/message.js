@@ -9,7 +9,13 @@ export default async function Send_message(url, data) {
       },
       body: JSON.stringify(data),
     });
-    return res.json();
+    if (contentType && contentType.includes("application/json")) {
+      return response.json();
+    } else {
+      const text = await response.text();
+      console.error('Unexpected response:', text);
+      throw new Error('Invalid JSON response');
+    }
   } catch (error) {
     console.log(error);
     return error;
