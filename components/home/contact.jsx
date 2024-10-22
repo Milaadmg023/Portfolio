@@ -1,20 +1,17 @@
 "use client";
-import Send_message from "@/utils/message";
+import Post_handler from "@/utils/post_handler";
 import { useState } from "react";
+import Update from "@/utils/update";
+
 function Contact() {
   const [message, setMessage] = useState({});
   function message_handler(e) {
     e.preventDefault();
     setMessage({ ...message, [e.target.id]: e.target.value });
   }
-  function submit_handler(e) {
+  async function submit_handler(e) {
     e.preventDefault();
-    console.log(message);
-    Send_message("/api/messages", message).then(
-      (res) => {
-        console.log(res);
-      }
-    );
+    await Update("/api/messages", JSON.stringify(message));
   }
   return (
     <section id="contact" className="w-full py-12 md:py-24 lg:py-32 bg-muted">
