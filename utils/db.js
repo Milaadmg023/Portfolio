@@ -24,4 +24,16 @@ export default class database {
           });
           return message;
      }
+     async update_base(data){
+          const newBase = await prisma.portfolio.update({
+               where: {
+                    id: 1
+               },
+               data: {
+                    name: data.name,
+                    job: data.job,
+               }
+          })
+          return newBase
+     }
 }

@@ -22,9 +22,7 @@ export default function Base({ data }) {
     formdata.append("name", JSON.stringify(info.name));
     formdata.append("job", JSON.stringify(info.job));
     formdata.append("image", file);
-    const response = await Update("/api/admin" , formdata)
-    console.log(response);
-    
+    const response = await Update("/api/admin" , formdata)    
   }
   return (
     <section className="text-center">
