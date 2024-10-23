@@ -38,4 +38,18 @@ export default class database {
           
           return newBase
      }
+     async delete_project(id){
+          await prisma.projects.delete({
+               where:{
+                    id : id
+               }
+          })
+     }
+     async delete_skill(id){
+          await prisma.skills.delete({
+               where:{
+                    id : id
+               }
+          })
+     }
 }

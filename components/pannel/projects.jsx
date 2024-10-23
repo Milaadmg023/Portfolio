@@ -1,41 +1,56 @@
+"use client";
+import { useState } from "react";
 import Image from "next/image";
+import Delete from "@/utils/delete";
 
 export default function Projects({ data }) {
+  async function deleteProject(id) {
+    const res = await Delete("/api/admin", id, "project");
+  }
   return (
-    <div className="mt-10">
-      {data.map((project) => {
-        return (
-          <div className="text-center">
-            <Image
-              src={project.image}
-              width={300}
-              height={300}
-              alt="project-img"
-              className="rounded-lg"
-            />
-            <div className="py-2 flex flex-col gap-2 ">
-              <label for="file-input" className="sr-only">
-                Choose file
-              </label>
-              <input
-                type="file"
-                name="file-input"
-                id="file-input"
-                className="block w-full border border-gray-200 shadow-sm rounded-lg text-sm focus:z-10 focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400
-                       file:bg-gray-50 file:border-0
-                       file:me-4
-                       file:py-3 file:px-4
-                       dark:file:bg-neutral-700 dark:file:text-neutral-400"
+    <>
+      <h2 className="text-xl font-bold border-b-2 border-slate-200 mt-8">پروژه ها</h2>
+      <div className="mt-10 grid grid-cols-1 lg:grid-cols-3 gap-3 justify-beetwen">
+        {" "}
+        {data.map((project) => (
+          <div className="flex flex-col gap-2">
+            <div
+              key={project.id}
+              className="relative overflow-hidden rounded-lg group"
+            >
+              <Image
+                src={project.image}
+                width={400}
+                height={400}
+                alt="Project 1"
+                className="object-cover w-full h-60 transition-all group-hover:scale-105"
+                style={{ aspectRatio: "400 / 400", objectFit: "cover" }}
               />
-              <input className="rounded-lg border p-1" type="text" defaultValue={project.name}/>
-              <textarea className="rounded-lg border p-1" type="text" defaultValue={project.description}/>
-              {project.url && <input className="rounded-lg border p-1" type="text" defaultValue={project.url}/>}
-              {project.githubUrl && <input className="rounded-lg border p-1" type="text" defaultValue={project.githubUrl}/>}
+              <div className="absolute inset-0 bg-black/50 flex flex-col gap-2 items-center justify-center opacity-0 group-hover:opacity-100 transition-all">
+                <h3 className="text-lg font-semibold text-white">
+                  {project.name}
+                </h3>
+                {project.githubUrl && (
+                  <button className="w-fit mx-auto p-2 bg-white text-gray-900 rounded-lg">
+                    سورس کد
+                  </button>
+                )}
+                {project.url && (
+                  <button className="w-fit mx-auto p-2 bg-white text-gray-900 rounded-lg">
+                    دمو
+                  </button>
+                )}
+              </div>
             </div>
-            <button className="p-1 rounded-lg border">ذخیره</button>
+            <button
+              onClick={() => deleteProject(project.id)}
+              className="bg-red-700 text-white p-1 border rounded-lg"
+            >
+              حذف
+            </button>
           </div>
-        );
-      })}
-    </div>
+        ))}
+      </div>
+    </>
   );
 }
