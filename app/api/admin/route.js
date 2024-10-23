@@ -4,9 +4,9 @@ import file_handler from "@/utils/file_handler";
 
 const db = new database();
 
-export const runtime = "edge";
 export async function PUT(req) {
   const form = await req.formData();
+  console.log(form)
   if (form.get("image")) {
     const file = await file_handler(form.get("image"));
   } else if (form.get("name") || form.get("job")) {

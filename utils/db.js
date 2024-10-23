@@ -34,6 +34,8 @@ export default class database {
                     job: data.job,
                }
           })
+          console.log(newBase);
+          
           return newBase
      }
 }
