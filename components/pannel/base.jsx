@@ -2,12 +2,10 @@
 import Image from "next/image";
 import { useState } from "react";
 import Update from "@/utils/update";
-import Loading from "../loading";
 
 export default function Base({ data }) {
   const [info, setInfo] = useState(null);
   const [file, setFile] = useState(null);
-  const [isLoaded , setIsLoaded] = useState(true);
   const btn_color = info ? "bg-green-500 " : "bg-gray-300";
   function message_handler(e) {
     e.preventDefault();
@@ -17,7 +15,6 @@ export default function Base({ data }) {
     setInfo({ ...info, [e.target.id]: e.target.value });
   }
   async function submit_handler(e) {
-    setIsLoaded(false);
     e.preventDefault();
     if (info) {
       if (!info.name) {
@@ -27,11 +24,11 @@ export default function Base({ data }) {
       }
     }
     const formdata = new FormData();
-    info && formdata.append("name", JSON.stringify(info.name));
-    info && formdata.append("job", JSON.stringify(info.job));
+    info && formdata.append("name", info.name);
+    info && formdata.append("job", info.job);
     file && formdata.append("image", file);
     await Update("/api/admin", formdata);
-    setIsLoaded(true);
+    window.location.reload()
   }
   return (
     <>
@@ -71,7 +68,6 @@ export default function Base({ data }) {
           ذخیره
         </button>
       </section>
-      {!isLoaded && <Loading />}
     </>
   );
 }
