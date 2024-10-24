@@ -4,12 +4,41 @@ import file_handler from "@/utils/file_handler";
 
 const db = new database();
 
+function formDataToObject(formData) {
+  const obj = {};
+  for (let [key, value] of formData.entries()) {
+      if (obj[key]) {
+          if (Array.isArray(obj[key])) {
+              obj[key].push(value);
+          } else {
+              obj[key] = [obj[key], value];
+          }
+      } else {
+          obj[key] = value;
+      }
+  }
+  return obj;
+}
+
+export const config = {
+  api: {
+    bodyParser: false,
+  },
+};
+
 export async function POST(req){
-  const data = await req.json();
-  const type = data.type;
-  const info = data.info;
+  const form = await req.formData();
+  const image = form.get("image");
+  const iamge_path = await file_handler(image);
+  /* const data = formDataToObject(form);
+  data.image = iamge_path;
+  const type = form.get("type"); */
   try {
-    console.log(data);
+    if (type == "project") {
+      //await db.add_project(data);
+    } else if (type == "skill") {
+      //await db.add_skill(data);
+    }
     return NextResponse.json({ success: true });
   } catch (error) {
     return NextResponse.json({ success: false });
