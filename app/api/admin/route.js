@@ -30,14 +30,14 @@ export async function POST(req){
   const form = await req.formData();
   const image = form.get("image");
   const iamge_path = await file_handler(image);
-  /* const data = formDataToObject(form);
+  const data = formDataToObject(form);
   data.image = iamge_path;
-  const type = form.get("type"); */
+  const type = form.get("type");
   try {
     if (type == "project") {
-      //await db.add_project(data);
+      await db.add_project(data);
     } else if (type == "skill") {
-      //await db.add_skill(data);
+      await db.add_skill(data);
     }
     return NextResponse.json({ success: true });
   } catch (error) {

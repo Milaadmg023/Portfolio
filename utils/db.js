@@ -53,19 +53,26 @@ export default class database {
           })
      }
      async add_project(data){
-          const project = await prisma.projects.create({
-               data: {
-                    name: data.name,
-                    preview: data.preview,
-                    github: data.github,
-                    image: data.image,
-                    portfolioId: 1
-               },
-               include: {
-                    portfolio: true
-               }
-          })
-          return project
+          try {
+               await prisma.projects.create({
+                    data: {
+                         name: data.name,
+                         image: data.image,
+                         url: data.preview,
+                         githubUrl: data.github,
+                         description: "",
+                         portfolioId: 1
+                    },
+                    include: {
+                         portfolio: true
+                    }
+               })
+          } catch (error) {
+               console.log(error);
+          }
+          console.log(data);
+          
+          /* return project */
      }
      async add_skill(data){
           const skill = await prisma.skills.create({
