@@ -4,6 +4,7 @@ import fetcher from "@/utils/fetch";
 import { useState, useEffect } from "react";
 import Projects from "./projects";
 import Skills from "./skills";
+import Messages from "./messages";
 
 export default function Container() {
   const [data, setData] = useState(null);
@@ -20,6 +21,7 @@ export default function Container() {
         <Base data={data.portfolio} />
         <Projects data={data.projects} />
         <Skills data={data.skills}/>
+        <Messages data={data.messages} />
       </section>
     )
   );
