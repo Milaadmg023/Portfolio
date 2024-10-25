@@ -7,15 +7,15 @@ const db = new database();
 function formDataToObject(formData) {
   const obj = {};
   for (let [key, value] of formData.entries()) {
-      if (obj[key]) {
-          if (Array.isArray(obj[key])) {
-              obj[key].push(value);
-          } else {
-              obj[key] = [obj[key], value];
-          }
+    if (obj[key]) {
+      if (Array.isArray(obj[key])) {
+        obj[key].push(value);
       } else {
-          obj[key] = value;
+        obj[key] = [obj[key], value];
       }
+    } else {
+      obj[key] = value;
+    }
   }
   return obj;
 }
@@ -26,17 +26,18 @@ export const config = {
   },
 };
 
-export async function POST(req){
+export async function POST(req) {
   const form = await req.formData();
-  const image = form.get("image");
-  const iamge_path = await file_handler(image);
-  const data = formDataToObject(form);
-  data.image = iamge_path;
   const type = form.get("type");
   try {
     if (type == "project") {
+      const image = form.get("image");
+      const iamge_path = await file_handler(image);
+      const data = formDataToObject(form);
+      data.image = iamge_path;
       await db.add_project(data);
     } else if (type == "skill") {
+      const data = formDataToObject(form);
       await db.add_skill(data);
     }
     return NextResponse.json({ success: true });
