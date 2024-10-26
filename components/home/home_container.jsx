@@ -16,6 +16,7 @@ export default function Container() {
     if (storedTheme) {
       setTheme(storedTheme);
     }
+    console.log(theme);  
   }
   useEffect(() => {
     const res = fetcher("/api/");
