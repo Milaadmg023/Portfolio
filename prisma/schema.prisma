@@ -18,6 +18,8 @@ model Portfolio {
   name  String
   job   String
   image String
+  username String
+  password String
   projects Projects[]
   skills Skills[]
   messages Messages[]
@@ -29,7 +31,6 @@ model Projects {
   image     String
   url       String
   githubUrl String
-  description String
   portfolio Portfolio @relation(fields: [portfolioId], references: [id])
   portfolioId Int
 }

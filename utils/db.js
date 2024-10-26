@@ -87,4 +87,16 @@ export default class database {
       console.log(error);
     }
   }
+  async get_password() {
+    const user = await prisma.portfolio.findUnique({
+      where: {
+        id: 1,
+      },
+      select: {
+        username: true,
+        password: true,
+      },
+    });
+    return user;
+  }
 }
