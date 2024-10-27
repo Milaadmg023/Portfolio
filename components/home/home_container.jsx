@@ -31,6 +31,12 @@ export default function Container() {
       setTheme("light");
     }
   }, []);
+  const baseInfo = {
+    name : data.portfolio.name,
+    job : data.portfolio.job,
+    image : data.portfolio.image
+  }
+  
   return (
     data && (
       <>
@@ -41,7 +47,7 @@ export default function Container() {
           >
             <Navbar getTheme={getTheme} />
             <main className="flex-1">
-              <Hero data={data.portfolio} />
+              <Hero data={baseInfo} />
               <Projects data={data.projects} />
               <Skills data={data.skills} />
               <Contact />
