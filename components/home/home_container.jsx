@@ -16,7 +16,6 @@ export default function Container() {
     if (storedTheme) {
       setTheme(storedTheme);
     }
-    console.log(theme);  
   }
   useEffect(() => {
     const res = fetcher("/api/");
@@ -31,7 +30,7 @@ export default function Container() {
       setTheme("light");
     }
   }, []);
-  const baseInfo = {
+  const baseInfo = data &&{
     name : data.portfolio.name,
     job : data.portfolio.job,
     image : data.portfolio.image
