@@ -50,10 +50,14 @@ export async function PUT(req) {
   const form = await req.formData();
   if (form.get("image")) {
     const file = await file_handler(form.get("image"));
-  } else if (form.get("name") || form.get("job")) {
+  } else {
     const name = form.get("name");
     const job = form.get("job");
-    const data = await db.update_base({ name: name, job: job });
+    const username = form.get("username");
+    const password = form.get("password");
+    console.log(name, job, username, password);
+    
+    await db.update_base({ name: name, job: job, username: username, password: password });
   }
   return NextResponse.json({ message: "success" });
 }

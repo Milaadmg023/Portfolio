@@ -3,12 +3,12 @@ import Image from "next/image";
 import { useState } from "react";
 import Update from "@/utils/update";
 
-export default function Base({ data }) {
+export default function Base({ data }) {  
   const [info, setInfo] = useState(null);
   const [file, setFile] = useState(null);
   const btn_color = info ? "bg-green-500 " : "bg-gray-300";
+  
   function message_handler(e) {
-    e.preventDefault();
     if (e.target.id === "image") {
       setFile({ ...file, [e.target.id]: e.target.files[0] });
     }
@@ -17,18 +17,19 @@ export default function Base({ data }) {
   async function submit_handler(e) {
     e.preventDefault();
     if (info) {
-      if (!info.name) {
-        info.name = data.name;
-      } else if (!info.job) {
-        info.job = data.job;
-      }
+      info.name = info.name ?? data.name;
+      info.job = info.job ?? data.job;
+      info.username = info.username ?? data.username;
+      info.password = info.password ?? data.password;
     }
     const formdata = new FormData();
     info && formdata.append("name", info.name);
     info && formdata.append("job", info.job);
+    info && formdata.append("username", info.username);
+    info && formdata.append("password", info.password);
     file && formdata.append("image", file);
     await Update("/api/admin", formdata);
-    window.location.reload()
+    //window.location.reload();
   }
   return (
     <>
@@ -60,6 +61,20 @@ export default function Base({ data }) {
               className="mx-auto rounded-lg"
             />
           </div>
+          <input
+            type="text"
+            defaultValue={data.username}
+            className="border p-1 rounded-lg"
+            onChange={message_handler}
+            id="username"
+          />
+          <input
+            type="text"
+            defaultValue={data.password}
+            className="border p-1 rounded-lg"
+            onChange={message_handler}
+            id="password"
+          />
         </div>
         <button
           className={`border py-1 px-3 rounded-lg mt-3 ${btn_color}`}

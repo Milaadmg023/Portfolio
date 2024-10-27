@@ -24,18 +24,17 @@ export default class database {
     return message;
   }
   async update_base(data) {
-    const newBase = await prisma.portfolio.update({
+    await prisma.portfolio.update({
       where: {
         id: 1,
       },
       data: {
         name: data.name,
         job: data.job,
+        username: data.username,
+        password: data.password,
       },
     });
-    console.log(newBase);
-
-    return newBase;
   }
   async delete_project(id) {
     await prisma.projects.delete({
