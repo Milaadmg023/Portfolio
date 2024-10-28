@@ -86,7 +86,7 @@ export default class database {
       console.log(error);
     }
   }
-  async get_password() {
+  async get_password(token) {
     const user = await prisma.portfolio.findUnique({
       where: {
         id: 1,
@@ -94,6 +94,25 @@ export default class database {
       select: {
         username: true,
         password: true,
+      },
+    });
+    await prisma.portfolio.update({
+      where: {
+        id: 1,
+      },
+      data: {
+        token: token,
+      },
+    })
+    return user;
+  }
+  async verfy_token(token) {
+    const user = await prisma.portfolio.findUnique({
+      where: {
+        id: 1,
+      },
+      select: {
+        token: true,
       },
     });
     return user;

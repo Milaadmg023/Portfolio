@@ -14,40 +14,41 @@ datasource db {
 }
 
 model Portfolio {
-  id    Int @id @default(autoincrement())
-  name  String
-  job   String
-  image String
+  id       Int        @id @default(autoincrement())
+  name     String
+  job      String
+  image    String
   username String
   password String
+  token    String
   projects Projects[]
-  skills Skills[]
+  skills   Skills[]
   messages Messages[]
 }
 
 model Projects {
-  id        Int @id @default(autoincrement()) 
-  name      String
-  image     String
-  url       String
-  githubUrl String
-  portfolio Portfolio @relation(fields: [portfolioId], references: [id])
+  id          Int       @id @default(autoincrement())
+  name        String
+  image       String
+  url         String
+  githubUrl   String
+  portfolio   Portfolio @relation(fields: [portfolioId], references: [id])
   portfolioId Int
 }
 
 model Skills {
-  id   Int @id @default(autoincrement())
-  name String
-  rate Int
-  portfolio Portfolio @relation(fields: [portfolioId], references: [id])
+  id          Int       @id @default(autoincrement())
+  name        String
+  rate        Int
+  portfolio   Portfolio @relation(fields: [portfolioId], references: [id])
   portfolioId Int
 }
 
 model Messages {
-  id   Int @id @default(autoincrement())
-  name String
-  email String
-  message String
-  portfolio Portfolio @relation(fields: [portfolioId], references: [id])
+  id          Int       @id @default(autoincrement())
+  name        String
+  email       String
+  message     String
+  portfolio   Portfolio @relation(fields: [portfolioId], references: [id])
   portfolioId Int
 }

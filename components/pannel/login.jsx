@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useState , useEffect } from "react";
 import Post from "@/utils/post";
 
 export default function Login({ loginhandler }) {
@@ -9,12 +9,28 @@ export default function Login({ loginhandler }) {
   };
   async function handle_login() {
     const res = await Post("/api/auth", JSON.stringify(data));
+    console.log(res)
     if (res.success) {
       loginhandler();
+      const token = res.token;
+      localStorage.setItem("token", token);
     } else {
       alert(res.message);
     }
   }
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    const isExpired = async () => {
+      const res = await Post("/api/auth/token", JSON.stringify( token ));
+      console.log(res)
+      if (res.success) {
+        loginhandler();
+      }
+    }
+    isExpired();
+  }, []);
+
   return (
     <div className="relative py-3 sm:max-w-xs sm:mx-auto">
       <div className="min-h-96 px-8 py-6 mt-4 text-left bg-white dark:bg-gray-900 rounded-xl shadow-lg">
