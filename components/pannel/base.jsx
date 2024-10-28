@@ -29,7 +29,7 @@ export default function Base({ data }) {
     info && formdata.append("password", info.password);
     file && formdata.append("image", file);
     await Update("/api/admin", formdata);
-    //window.location.reload();
+    window.location.reload();
   }
   return (
     <>
