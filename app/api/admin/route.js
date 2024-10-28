@@ -20,12 +20,6 @@ function formDataToObject(formData) {
   return obj;
 }
 
-export const config = {
-  api: {
-    bodyParser: false,
-  },
-};
-
 export async function POST(req) {
   const form = await req.formData();
   const type = form.get("type");
