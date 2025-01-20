@@ -8,10 +8,12 @@ const Contact: React.FC = () => {
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    await send_msg({msg: [name, email, message] });
-    setName("");
-    setEmail("");
-    setMessage("");
+    await send_msg({msg: [name, email, message] }).then(() => {
+      setName("");
+      setEmail("");
+      setMessage("");
+    })
+    
   };
 
   return (
