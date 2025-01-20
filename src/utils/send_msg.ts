@@ -9,14 +9,13 @@ export default async function send_msg(msg : {msg : [name : string, email : stri
 
     try {
         const response = await fetch(url);
-        console.log(response);
         if (response.ok) {
             alert('پیام شما با موفقیت ارسال شد:)');
         } else {
             alert('خطا در ارسال پیام');
         }
     } catch (error) {
-        console.error(error);
+        console.error("error while sending message: " , error);
     }
 
 }

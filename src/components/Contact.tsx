@@ -1,19 +1,17 @@
 import React, { useState, FormEvent } from "react";
 import send_msg from "../utils/send_msg";
+import { useNavigate } from "react-router-dom";
 
 const Contact: React.FC = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
+  const navigate = useNavigate();
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    await send_msg({msg: [name, email, message] }).then(() => {
-      setName("");
-      setEmail("");
-      setMessage("");
-    })
-    
+    await send_msg({msg: [name, email, message] });
+    navigate(0);
   };
 
   return (
