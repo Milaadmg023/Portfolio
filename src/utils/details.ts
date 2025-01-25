@@ -27,7 +27,7 @@ const details = {
     },
     {
       name: "وبلاگ شخصی",
-      image: "/p2.png",
+      image: "/p3.png",
       preview: "https://codina-blog.vercel.app/",
       github: "https://github.com/Milaadmg023/blog",
     }
