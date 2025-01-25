@@ -16,8 +16,8 @@ const details = {
     {
       name: "وبسایت رزومه شخصی",
       image: "/p1.png",
-      preview: "https://milad-portfolio.vercel.app/",
-      github: "https://github.com/milad-bageri/Portfolio",
+      preview: "https://company-portfolio-lovat.vercel.app/",
+      github: "https://github.com/Milaadmg023/Portfolio",
     },
     {
       name: "وبسایت شرکتی",
