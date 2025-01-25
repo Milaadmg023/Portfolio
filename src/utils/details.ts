@@ -25,6 +25,12 @@ const details = {
       preview: "https://company-portfolio-lovat.vercel.app/",
       github: "https://github.com/Milaadmg023/Company-Portfolio",
     },
+    {
+      name: "وبلاگ شخصی",
+      image: "/p2.png",
+      preview: "https://codina-blog.vercel.app/",
+      github: "https://github.com/Milaadmg023/blog",
+    }
   ],
 };
 
